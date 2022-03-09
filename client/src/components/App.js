@@ -4,6 +4,8 @@ import SignUp from "./SignUp";
 import Login from "./Login";
 import NavBar from "./NavBar";
 import Home from "./Home";
+import Store from "./Store";
+import Cart from "./Cart";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -23,8 +25,14 @@ function App() {
       <main>
         {user ? (
           <Switch>
+            <Route path="/store">
+              <Store user={user} />
+            </Route>
+            <Route path="/cart">
+              <Cart user={user} />
+            </Route>
             <Route path="/">
-              <Home user={user}/>
+              <Home user={user} />
             </Route>
           </Switch>
         ) : (
