@@ -4,7 +4,7 @@ class CartsController < ApplicationController
         render json: Cart.all
     end
 
-    def update
+    def create
         cart = Cart.create!(cart_params)
         render json: cart, status: :created
     end
@@ -18,7 +18,7 @@ class CartsController < ApplicationController
     private
 
     def cart_params
-        params.permit(:item, :user)
+        params.permit(:item_id, :user_id)
     end
 
 end

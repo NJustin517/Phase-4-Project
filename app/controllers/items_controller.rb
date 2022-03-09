@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
 
     def show
         item = Item.find(params[:id])
-        render json: item, serializer: #TBD on what is listed 
+        render json: item
     end
 
     def create
@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
     private
 
     def item_params
-        params.permit(:name, :price, :description)
+        params.permit(:name, :price, :description, :store_id)
     end
 
     def render_not_found_response

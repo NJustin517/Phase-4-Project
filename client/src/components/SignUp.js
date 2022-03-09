@@ -16,6 +16,7 @@ function SignUp({ setUser }) {
         username,
         password,
         password_confirmation: passwordConfirmation,
+        store_id: 1,
       }),
     }).then((r) => {
       if (r.ok) {
