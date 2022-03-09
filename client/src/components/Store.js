@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ItemCard from "./ItemCard";
 
 function Store() {
   const [items, setItems] = useState(null);
@@ -13,7 +14,13 @@ function Store() {
     return <h2>Loading...</h2>;
   }
 
-  return <h1>Here's the store!</h1>;
+  const cards = items.map((i) => {
+    return <ItemCard key={i.id} item={i} />;
+  });
+
+  console.log(items);
+
+  return <div className="store">{cards}</div>;
 }
 
 export default Store;
