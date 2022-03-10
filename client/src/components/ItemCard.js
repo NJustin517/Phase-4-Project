@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-function ItemCard({ item: { name, price, description, image_url, id }, user }) {
+function ItemCard({ item: { name, price, description, image_url, id }, user, inCart }) {
+  const [isInCart, setInCart] = useState(inCart)
 
+  
   function handleclick() {
     fetch("/carts", {
       method: "POST",
@@ -14,13 +16,13 @@ function ItemCard({ item: { name, price, description, image_url, id }, user }) {
       })
     })
       .then((r) => r.json())
-      .then((data) => (data));
+      .then((data) => setInCart(true));
   }
 
 
 
 
-  console.log(image_url);
+
   return (
     <div className="card">
       <img src={image_url} alt="Avatar" style={{ width: "100%" }}></img>
@@ -30,7 +32,7 @@ function ItemCard({ item: { name, price, description, image_url, id }, user }) {
             <b>{name}</b>
             <br></br>
             <b>${price}.00</b>
-            <button style={{marginLeft: "20px"}} onClick={handleclick}>Add to cart</button>
+            {isInCart ? <p>Added to Cart!</p> : <button style={{marginLeft: "20px"}} onClick={handleclick}>Add to cart</button>}
           </span>
         </h4>
         <p>{description}</p>

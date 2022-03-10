@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import CartCard from "./CartCard";
 
-function Cart({ user }) {
-  const [currentCart, setCart] = useState(null);
+function Cart({ user, currentCart, setCart }) {
+  // const [currentCart, setCart] = useState(null);
 
 
   useEffect(() => {

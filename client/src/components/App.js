@@ -9,6 +9,7 @@ import Cart from "./Cart";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [currentCart, setCart] = useState(null);
 
   useEffect(() => {
     // auto-login
@@ -26,10 +27,10 @@ function App() {
         {user ? (
           <Switch>
             <Route path="/store">
-              <Store user={user} />
+              <Store user={user} currentCart={currentCart} />
             </Route>
             <Route path="/cart">
-              <Cart user={user} />
+              <Cart user={user} currentCart={currentCart} setCart={setCart}/>
             </Route>
             <Route path="/">
               <Home user={user} />
