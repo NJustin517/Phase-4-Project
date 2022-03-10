@@ -21,11 +21,13 @@ function Cart({ user }) {
   return (
     <div className="cart">
       <h1 className="cartTitle">CART</h1>
+      <h2 className="cartcount" >Items: {currentCart.cart_count}</h2>
       {cards}
       <hr className="totalLine"></hr>
       <span>
         <b className="cartTotal">Total:</b>
         <b className="cartTotal" style={{ marginLeft: "75%" }}>
+          
           ${currentCart.cart_sum}.00
         </b>
       </span>
