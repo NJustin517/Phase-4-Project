@@ -1,15 +1,22 @@
-function CartCard({ item }) {
-  // function handleDeleteClick() {
-  //   fetch(`/carts/${cart.id}`, {
-  //     method: "DELETE",
-  //   }).then((res) => {
-  //     if (res.ok) {
-  //       console.log(res);
-  //     } else {
-  //       res.json().then(console.log);
-  //     }
-  //   });
-  // }
+function CartCard({ item, cart_id, setCart, user_id }) {
+  function handleDeleteClick() {
+
+    fetch(`/carts/${cart_id}`, {
+      method: "DELETE",
+    }).then((res) => {
+      if (res.ok) {
+        getUpdatedCart();
+      } else {
+        res.json().then(console.log);
+      }
+    });
+  }
+
+  function getUpdatedCart() {
+    fetch(`/users/${user_id}`)
+      .then((resp) => resp.json())
+      .then((receivedItems) => setCart(receivedItems))
+  }
 
   return (
     <>
@@ -20,7 +27,7 @@ function CartCard({ item }) {
           <p class="information">{item.description}</p>
 
           <div class="control">
-            <button class="btn">
+            <button class="btn" onClick={handleDeleteClick}>
               <span class="price">${item.price}.00</span>
               <span class="shopping-cart">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>

@@ -2,19 +2,21 @@ import React, { useEffect, useState } from "react";
 import CartCard from "./CartCard";
 
 function Cart({ user }) {
-  const [cart, setCart] = useState(null);
+  const [currentCart, setCart] = useState(null);
+
 
   useEffect(() => {
     fetch(`/users/${user.id}`)
       .then((resp) => resp.json())
-      .then((receivedItems) => setCart(receivedItems.cart));
+      .then((receivedItems) => setCart(receivedItems));
   }, []);
-  if (cart === null) {
+  if (currentCart === null) {
     return <h2>Loading...</h2>;
   }
 
-  const cards = cart.map((item) => {
-    return <CartCard key={item.id} item={item} />;
+
+  const cards = currentCart.cart.map((item, index) => {
+    return <CartCard key={item.id} item={item} cart_id={currentCart.carts[index].id} setCart={setCart} user_id={user.id} />;
   });
   return (
     <div className="cart">
