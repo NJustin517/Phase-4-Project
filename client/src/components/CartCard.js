@@ -17,7 +17,8 @@ function CartCard({ item, cart_id, setCart, user_id }) {
       .then((resp) => resp.json())
       .then((receivedItems) => setCart(receivedItems))
   }
-
+  console.log(item)
+  console.log(cart_id)
   return (
     <>
       <div id="container">

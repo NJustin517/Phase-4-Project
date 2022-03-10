@@ -15,8 +15,8 @@ function Cart({ user }) {
   }
 
 
-  const cards = currentCart.cart.map((item, index) => {
-    return <CartCard key={item.id} item={item} cart_id={currentCart.carts[index].id} setCart={setCart} user_id={user.id} />;
+  const cards = currentCart.carts.map((c) => {
+    return <CartCard key={c.id} item={c.item} cart_id={c.id} setCart={setCart} user_id={user.id} />;
   });
   return (
     <div className="cart">
@@ -26,7 +26,7 @@ function Cart({ user }) {
       <span>
         <b className="cartTotal">Total:</b>
         <b className="cartTotal" style={{ marginLeft: "75%" }}>
-          ${user.cart_sum}.00
+          ${currentCart.cart_sum}.00
         </b>
       </span>
     </div>
