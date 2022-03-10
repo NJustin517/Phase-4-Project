@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ItemCard from "./ItemCard";
 
-function Store() {
+function Store({ user }) {
   const [items, setItems] = useState(null);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ function Store() {
   }
 
   const cards = items.map((i) => {
-    return <ItemCard key={i.id} item={i} />;
+    return <ItemCard key={i.id} item={i} user={user}/>;
   });
 
   console.log(items);

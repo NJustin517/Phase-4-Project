@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_secure_password
   belongs_to :store
   has_many :carts
+  has_many :items, through: :carts
 
   validates :username, presence: true, uniqueness: true
   # validates :email, 
@@ -15,6 +16,10 @@ class User < ApplicationRecord
   else
      return 0
   end
+ end
+
+ def cart
+   self.items
  end
 
 end

@@ -76,3 +76,23 @@ form button[type="submit"] {
   grid-template-rows: auto;
   gap: 10px;
 }
+
+/* .fadedfx {
+  background-color: #fe5652;
+  visibility: hidden;
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+  -webkit-animation-name: fadeIn;
+  animation-duration: 1.5s;
+  -webkit-animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  visibility: visible !important;
+} */
+
+.cardImage {
+  float: left;
+  height: 21vh;
+}
