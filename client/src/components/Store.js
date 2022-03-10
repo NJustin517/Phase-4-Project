@@ -3,6 +3,7 @@ import ItemCard from "./ItemCard";
 
 function Store({ user }) {
   const [items, setItems] = useState(null);
+  const [cartItems, setCartItems] = useState(null);
 
   useEffect(() => {
     fetch("/items")
@@ -10,15 +11,27 @@ function Store({ user }) {
       .then((receivedItems) => setItems(receivedItems));
   }, []);
 
-  if (items === null) {
+  useEffect(() => {
+    fetch(`/users/${user.id}`)
+      .then((resp) => resp.json())
+      .then((data) => {
+        const cartItems = data.carts.map((c) => {
+          return c.item.id
+        })
+        setCartItems(cartItems)
+      });
+  }, [items])
+
+  if (items === null || cartItems === null) {
     return <h2>Loading...</h2>;
   }
-
   const cards = items.map((i) => {
-    return <ItemCard key={i.id} item={i} user={user}/>;
+    let inCart = false;
+    if (cartItems.length !== 0 && cartItems.includes(i.id)) {
+      inCart = true;
+    }
+    return <ItemCard key={i.id} item={i} user={user} inCart={inCart} />;
   });
-
-  console.log(items);
 
   return <div className="store">{cards}</div>;
 }
