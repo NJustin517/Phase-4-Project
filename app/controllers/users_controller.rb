@@ -17,9 +17,7 @@ class UsersController < ApplicationController
         render json: user
     end
 
-    def print_name
-      puts "Bob Ross"
-    end
+    
 
     private
 

@@ -1,6 +1,25 @@
 import React, { useEffect, useState } from "react";
 
-function ItemCard({ item: { name, price, description, image_url } }) {
+function ItemCard({ item: { name, price, description, image_url, id }, user }) {
+
+  function handleclick() {
+    fetch("/carts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: user.id,
+        item_id: id
+      })
+    })
+      .then((r) => r.json())
+      .then((data) => (data));
+  }
+
+
+
+
   console.log(image_url);
   return (
     <div className="card">
@@ -11,6 +30,7 @@ function ItemCard({ item: { name, price, description, image_url } }) {
             <b>{name}</b>
             <br></br>
             <b>${price}.00</b>
+            <button style={{marginLeft: "20px"}} onClick={handleclick}>Add to cart</button>
           </span>
         </h4>
         <p>{description}</p>
